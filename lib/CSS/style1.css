@@ -1,0 +1,306 @@
+/* Css de l'index */
+
+a:link {color: red;}
+a:visited {color: white;}
+a:hover {color: yellow;}
+a:active {color: white;}
+a:focus{color: yellow;}
+
+body, html{
+    background-image: url('images/etoiles.png');
+}
+
+header{
+    background-image: url('images/etoiles.png');
+}
+
+.cadre{
+    border: 10px #8F1414 solid;   
+    border-radius: 15px ;
+    background-color : #ABB1F5;
+}
+
+.cadre2{
+    border: 3px #8F1414 solid;   
+    border-radius: 15px ;
+    background-color : #ABB1F5;
+}
+
+#entete{
+    background-image: url('images/faucon.png');
+    background-repeat : no-repeat;
+    width:240px;
+    height:200px;
+}
+
+nav ul{
+    margin-top : -5%;
+    list-style : none;
+    height : 60px;
+}
+
+nav li{
+    margin-left : 15%;
+    display : inline;
+    text-align : center;
+    font-size : 30px;
+}
+nav li a {
+    text-decoration : none;
+}
+
+#t1{
+    width:50%;
+    color : white;
+    text-align : center;
+    margin-left :24%;
+    margin-top : 3.6%;
+    position : absolute;
+    font-size : 30px;
+}
+
+#main_acc{
+    margin : 0 auto;
+    width : 800px;
+    height : 270px;
+    margin-top : 7%;
+}
+
+#signature{
+    margin-top : 1%;
+    margin-left : 1%;
+}
+
+footer{
+    margin-top : 5%;
+}
+
+#foot{
+    width : 15%;
+    margin : 0 auto;
+    text-align : center;
+}
+
+#main_log{
+    width : 500px;
+    height: 400px;
+    margin : 0 auto;
+}
+
+#main_log table{
+    margin : 0 auto;
+    font-size : 25px;
+}
+
+h1{
+    text-align : center;
+    font-size : 35px;
+}
+
+#bt_co{
+    text-align : center;
+}
+
+.tir{
+    position : absolute;
+    background-color:red;
+    position : absolute;
+    border-radius : 9px;
+}
+
+.a1{
+    top : 53px;
+    left : 220px;
+    height : 12px;
+    width: 0px;
+}
+
+.a2{
+    top : 89px;
+    left : 220px;
+    height : 12px;
+    width: 0px;
+}
+
+#artacc{
+    left : 5%;
+    right : 5%;
+    top : 2%;
+    font-size : 25px;
+    text-align : center;
+    line-height:55px;
+}
+
+#fg{
+    position : fixed;
+}
+#cata{
+    margin-left : 14%;
+    color : black;
+    width : 75%;
+    text-align : center;
+}
+
+div h3{
+    margin-top : 2%;
+    margin-bottom : 2%;
+}
+#v1{
+    background-image: url('images/croiseur.jpg');
+    background-repeat : no-repeat;
+    width : 350px;
+    height : 200px;
+}
+
+#v2{
+    margin-left :5%;
+    background-image: url('images/vaiss2.jpg');
+    background-repeat : no-repeat;
+    width : 350px;
+    height : 200px;
+}
+
+.txtvaiss{
+    text-align : center;
+    margin-left : 15%;
+    margin-right : 15%;
+    margin-top :5%;
+}
+
+.plcmvaiss{
+    margin-top : 5%;
+    margin-left : 2%;
+}
+
+.formulaire_log{
+    width : 70%;
+    height : 0.5%;
+}
+
+.lablog{
+    font-size : 20px;
+}
+
+#connec{
+    margin-top : 7%;
+}
+
+#fr{
+    width : 20%;
+    height : 75%;
+    text-align : center;
+    position : fixed;
+}
+
+#photpart1{
+    background-image: url('images/gas.jpg');
+    background-repeat : no-repeat;
+    width : 150px;
+    height : 184px;
+    margin-left : 25%;
+    margin-top : 10%;
+}
+
+#fr h2{
+    margin-top : 5%;
+}
+
+article a{
+    margin-top :0px;
+}
+
+#photcont{
+    background-image: url('images/mail.png');
+    background-repeat : no-repeat;
+    width : 150px;
+    height :115px;
+    margin : 0 auto;
+    margin-top : 10%;
+    margin-bottom:5%;
+}
+
+#shop{
+    width : 30%;
+    margin : 0 auto;
+    margin-top : 2%;
+    text-align: center;
+}
+
+section h2{
+    margin-top : 3%;
+}
+
+#shopv1{
+    background-image: url('images/croiseur.jpg');
+    background-repeat : no-repeat;
+    width : 350px;
+    height : 200px;
+    margin-left : 10%;
+    margin-top : 10%;
+}
+
+#slidebardroite{
+    position: relative;
+    margin-left : 78%;
+}
+
+#slidebargauche{
+    position: relative;
+}
+
+.artvaiss{
+    width : 55%;
+    margin-top : 10%;
+    text-align: center;
+    margin-left : 20%;
+}
+
+.boutcom{
+    margin-right : 6%;
+    margin-top : 6%;
+}
+
+#shopv2{
+    background-image: url('images/vaiss1.jpg');
+    background-repeat : no-repeat;
+    width : 350px;
+    height : 200px;
+    margin-left : 10%;
+    margin-top : 10%;
+}
+
+#shopv3{
+    background-image: url('images/vaiss3.jpg');
+    background-repeat : no-repeat;
+    width : 350px;
+    height : 200px;
+    margin-left : 10%;
+    margin-top : 10%;
+}
+
+#shopv4{
+    background-image: url('images/vaiss2.jpg');
+    background-repeat : no-repeat;
+    width : 350px;
+    height : 200px;
+    margin-left : 10%;
+    margin-top : 10%;
+}
+
+#shopv5{
+    background-image: url('images/vaiss4.jpg');
+    background-repeat : no-repeat;
+    width : 350px;
+    height : 240px;
+    margin-left : 10%;
+    margin-top : 10%;
+}
+
+#shopv6{
+    background-image: url('images/vaiss5.jpg');
+    background-repeat : no-repeat;
+    width : 350px;
+    height : 200px;
+    margin-left : 10%;
+    margin-top : 10%;
+}
