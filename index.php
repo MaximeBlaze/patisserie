@@ -1,6 +1,7 @@
 ﻿<?php
 include ('./admin/lib/php/admin_liste_include.php');
 $cnx = Connexion::getInstance($dsn, $user, $pass);
+$login;
 session_start();
 ?>
 <!doctype html>
@@ -8,24 +9,41 @@ session_start();
 <html>
     <head>
         <title>Mon site !</title>
-        <link rel="stylesheet" type="text/css" href="../Site 2017/admin/lib/css/bootstrap-4.0.0-beta/dist/css/bootstrap.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="lib/CSS/style1.css"/>
         <script src="jquery.js"></script>
         <meta charset="utf-8">
     </head>
-    <header>
-        <h1 id="t1"></h1>
-        <div id="entete"></div>
-        <div class="tir a1"></div>
-        <div class="tir a2"></div>
-        <nav>
-            <?php
-            if (file_exists("./lib/php/menu.php")) {
-                include "./lib/php/menu.php";
-            }
-            ?>
-        </nav>
+    <header class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 id="t1"></h1>
+                <div id="hvaiss">
+                    <div id="entete" class="img-responsive"></div>
+                    <div class="tir a1"></div>
+                    <div class="tir a2"></div>
+                </div>
+            </div>
+        </div>
     </header>
+    <div class="container">
+        <div class="row">
+                <div class="col-sm-12">
+                        <?php
+                        if (file_exists("./lib/php/menu.php")) {
+                            include "./lib/php/menu.php";
+                        }
+                        else
+                        {
+                            print "erreur de chargement de page !";
+                        }
+                        ?>
+                </div>
+        </div>
+    </div>    
     <body>
         <?php
         if (!isset($_SESSION['page'])) {
@@ -36,29 +54,25 @@ session_start();
             }
         }
         if (file_exists($_SESSION['page'])) {
-            if($_SESSION['page']!='./pages/login.php')
-            {
-                include "./lib/php/catalogue.php";
-                include "./lib/php/partenaire.php";
-            }
+            
             include $_SESSION['page'];
         } else
             print "Error";
         ?>
     </body>
-    <footer>
-        <div id="foot" class="cadre">
-            Webmaster : Maxime Blaze
-        </div>
+    <footer class="col-sm-12">
+        <p>© 2117 OVNI_TRO, All rights reserved 2116-2117.</p>
     </footer>
-                <script>
+</html>
+<script>
                     var t1 = "Magasin OVNI-TRO";
                     var Array1 = t1.split("");
                     var time;
                     $(document).ready(function () {
-                        $('.a1').stop().animate({width: '1350px'}, {duration: 1500});
-                        $('.a2').stop().animate({width: '1350px'}, {duration: 1500});
+                        $('.a1').stop().animate({width: '800px'}, {duration: 1000});
+                        $('.a2').stop().animate({width: '800px'}, {duration: 1000});
                         time = setTimeout('machine()', 500);
+                        time = setTimeout('effactir()', 3500);
                     });
                     function machine() {
                         if (Array1.length > 0)
@@ -70,5 +84,8 @@ session_start();
                         }
                         time = setTimeout('machine()', 150);
                     }
+                    function effactir()
+                    {
+                        $(".tir").hide();
+                    }
                 </script>
-</html>
