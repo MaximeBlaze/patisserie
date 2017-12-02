@@ -2,15 +2,13 @@
     $info = new vaisseauDB($cnx);
     $texte = $info->getAllVaisseau();
     $nbrvaiss = count($texte);
-    for($i=0;$i<$nbrvaiss;$i++)
+    if(isset($_GET['commander']))
     {
-        if(isset($_GET['commander_'+$texte[$i]->ID_VAISSEAU]))
-        {
             $info2 = new liste_panierDB($cnx);
-            print $texte[$i]->ID_VAISSEAU;
-            $texte2 = $info->ajoutpanier($texte[$i]->ID_VAISSEAU);
-        }
-    }
+            $texte2 = $info2->ajoutpanier($_GET['choix']);?>
+            <meta http-equiv = "refresh": content = "0;url=index.php?page=panier.php">
+    <?php } 
+    
 ?>
 <section class="col-sm-12 bloc1">
     <h1 style="margin-bottom : 3%; margin-top:1%;">Nos vaisseaux :</h1>
@@ -24,13 +22,17 @@
             </section>
             <section class="col-sm-12 txtvaiss" >
                 <form style="margin-top :3%;margin-bottom :3%; background-color: #CCCCCC;">
-                    <?php 
-                    print $texte[$i]->DESCRIPTION;?>
+                    <input type='hidden' name="choix" value="<?php print $texte[$i]->ID_VAISSEAU?>"></input>
+                    <label name="desc"><?php print $texte[$i]->DESCRIPTION;?></label>
                     <br/><br/>
-                    Prix : <?php print $texte[$i]->PRIX; ?> unité(s)<br/><br/>
-                    <input class="btn btn-primary" type="button" name="commander_<?php print $texte[$i]->ID_VAISSEAU ?>" value="Ajouter au panier"/></a>
+                    <label name="prix">Prix : <?php print $texte[$i]->PRIX; ?> unité(s)</label><br/><br/>
+                    <?php
+                    if(isset($_SESSION['login']))
+                    { ?>
+                    <input class="btn btn-primary" type="submit" name="commander" value="Ajouter au panier"/>
+                    <?php } ?>     
                 </form>
             </section>
         <?php } ?>
 
-            
+        

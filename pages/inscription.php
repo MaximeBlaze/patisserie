@@ -29,14 +29,17 @@ if(isset($_GET['inscription']))
     else if ($_GET['nom']!="" && $_GET['prenom']!="" && $_GET['login']!="" && $_GET['mdp']!="" && $_GET['cpt']!="" && $_GET['adr']!="")
     {
         $info = new utilisateurDB($cnx);
+        $info2 = new panierDB($cnx);
         $valeur[0]= $_GET['nom'];
         $valeur[1]= $_GET['prenom'];
         $valeur[2]= $_GET['login'];
         $valeur[3]= $_GET['mdp'];
         $valeur[4]= $_GET['cpt'];
         $valeur[5]= $_GET['adr'];
-        $info->addClient($valeur); 
-    }
+        $info->addClient($valeur);
+        $info2->addPanier($valeur);?>
+        <meta http-equiv = "refresh": content = "0;url=index.php?page=login.php">
+    <?php }
 }
 ?>
 

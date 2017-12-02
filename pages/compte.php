@@ -1,6 +1,8 @@
 <?php
+    require "./admin/lib/PHP/verifier_connexion.php";
+
 $info = new utilisateurDB($cnx);
-$texte = $info->getUtilisateur("admin");
+$texte = $info->getUtilisateur($_SESSION['login']);
 if(isset($_GET['modifier']))
 {
     if ($_GET['nom']!="" && $_GET['prenom']!="" && $_GET['mdp']!="" && $_GET['cpt']!="" && $_GET['adr']!="" )

@@ -8,18 +8,53 @@ class panierDB extends panier{
         $this->_db = $cnx;
     }
     
-    public function getPanier($login){
+    public function getPanier(){
         try {
             $nbr=0;
-            $query="select v.IMAGE, v.DESCRIPTION, v.PRIX from VAISSEAU v, PANIER p, LISTE_VAISSEAUX l where p.LOGIN= :login and p.ID_PANIER=l.ID_PANIER and v.ID_VAISSEAU=l.ID_VAISSEAU;";
+            $query="select v.IMAGE, v.DESCRIPTION, v.PRIX, v.ID_VAISSEAU from VAISSEAU v, LISTE_VAISSEAUX l where l.ID_PANIER= :panier and v.ID_VAISSEAU=l.ID_VAISSEAU;";
             $resultset = $this->_db->prepare($query);
-            $resultset->bindValue(':login',$login,PDO::PARAM_STR);
+            $resultset->bindValue(':panier',$_SESSION['panier'],PDO::PARAM_STR);
             $resultset->execute();
             while($data = $resultset->fetch()){
                 $_infoArray[] = new utilisateur($data);
                 $nbr+1;
             }
             if($nbr==0)
+            {
+                $_infoArray[]=false;
+            }
+            return $_infoArray;
+            
+            
+        }catch(PDOException $e){
+            print "Erreur ".$e->getMessage();
+        }        
+    }
+    
+    public function addPanier(array $data) {
+        
+        $query = "insert into PANIER (LOGIN) values (:login)";
+
+        try {
+            $resultset = $this->_db->prepare($query);
+            $resultset->bindValue(':login',$data[2], PDO::PARAM_STR); 
+            $resultset->execute();
+        }catch(PDOException $e){
+            print "<br/>Echec de l'insertion";
+            print $e->getMessage();
+        }        
+    }
+    
+    public function getIDPanier($login){
+        try {
+            $query="select ID_PANIER from PANIER where LOGIN= :login;";
+            $resultset = $this->_db->prepare($query);
+            $resultset->bindValue(':login',$_SESSION['login'],PDO::PARAM_STR);
+            $resultset->execute();
+            while($data = $resultset->fetch()){
+                $_infoArray[] = new utilisateur($data);
+            }
+            if(empty($data))
             {
                 $_infoArray[]=false;
             }

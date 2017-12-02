@@ -58,7 +58,7 @@ class utilisateurDB extends utilisateur{
             $resultset->bindValue(':nom',$data[0], PDO::PARAM_STR);
             $resultset->bindValue(':prenom',$data[1], PDO::PARAM_STR);
             $resultset->bindValue(':login',$data[2], PDO::PARAM_STR);
-            $resultset->bindValue(':mdp',$data[3], PDO::PARAM_STR);
+            $resultset->bindValue(':mdp',md5($data[3]), PDO::PARAM_STR);
             $resultset->bindValue(':numero_compte',$data[4], PDO::PARAM_INT);
             $resultset->bindValue(':adresse',$data[5], PDO::PARAM_STR);  
             $resultset->execute();
@@ -74,7 +74,7 @@ class utilisateurDB extends utilisateur{
             $resultset = $this->_db->prepare($query);
             $resultset->bindValue(':nom',$data[0],PDO::PARAM_STR);
             $resultset->bindValue(':prenom',$data[1],PDO::PARAM_STR);
-            $resultset->bindValue(':mdp',$data[2],PDO::PARAM_STR);
+            $resultset->bindValue(':mdp',md5($data[2]),PDO::PARAM_STR);
             $resultset->bindValue(':cpt',$data[3],PDO::PARAM_INT);
             $resultset->bindValue(':adr',$data[4],PDO::PARAM_STR);
             $resultset->bindValue(':login','admin',PDO::PARAM_STR);

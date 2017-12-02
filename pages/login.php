@@ -16,9 +16,13 @@ if(isset($_GET['connecter'])){
             {
                 if($texte[0]->LOGIN==$_GET['login'])
                 {
-                    if($texte[0]->MDP==$_GET['mdp'])
+                    if($texte[0]->MDP==md5($_GET['mdp']))
                     {
-                        $login = $texte[0]->ID_UTILISATEUR;
+                        $_SESSION['login'] = $texte[0]->LOGIN;
+                        $info2 = new panierDB($cnx);
+                        $texte2 = $info2->getIDPanier($_GET['login']);
+                        $_SESSION['panier']=$texte2[0]->ID_PANIER?>
+                        <meta http-equiv = "refresh": content = "0;url=index.php?page=accueil.php"><?php
                     }
                 }
             }
