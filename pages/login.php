@@ -50,15 +50,15 @@ if(isset($_GET['connecter'])){
                 <td><input type="text" class="form-control" name="login"><br></td>
             </tr>
             <tr>
-                <td><?php if(isset($erreur_mdp)) print "<span class='erreur'>*</span>"?><label for="mdp" class="lablog">Mot de passe :</label><br><br></td>
+                <td ><?php if(isset($erreur_mdp)) print "<span class='erreur'>*</span>"?><label for="mdp" class="lablog">Mot de passe :</label><br><br></td>
                 <td class="inline"><input type="password" class="form-control" name="mdp"><br></td>
+            </tr>
+            <tr>
+                <td colspan="2" ><input class="btn btn-primary" type="submit" name="connecter" value="Se connecter"/>
+            <a href="index.php?page=inscription.php"><input class="btn btn-primary" type="button" name="enreg" value="S'inscrire"/></a></td>
             </tr>
         </table>
         <br>
-            <div id="bt_co">
-                <input class="btn btn-primary" type="submit" name="connecter" value="Se connecter"/>
-                <a href="index.php?page=inscription.php"><input class="btn btn-primary" type="button" name="enreg" value="S'enregistrer"/></a>
-            </div>
     </form>
     <br>
 </section>

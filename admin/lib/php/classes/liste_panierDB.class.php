@@ -1,6 +1,6 @@
 <?php
 
-class liste_panierDB {
+class liste_panierDB extends liste_panier{
     private $_db;
     private $_infoArray = array();
     
@@ -21,6 +21,7 @@ class liste_panierDB {
     
     public function retirerpanier($id_vaisseau){
         try {
+            
             $query="delete from LISTE_VAISSEAUX where ID_VAISSEAU = :id_vaisseau and ID_PANIER = :id_panier";
             $resultset = $this->_db->prepare($query);
             $resultset->bindValue(':id_vaisseau',$id_vaisseau,PDO::PARAM_INT);
@@ -29,5 +30,26 @@ class liste_panierDB {
         }catch(PDOException $e){
             print "Erreur ".$e->getMessage();
         }        
+    }
+    
+    public function getArticles($id_panier)
+    {
+        try {
+            
+            $query="select * from LISTE_VAISSEAUX where ID_PANIER = :panier";
+            $resultset = $this->_db->prepare($query);
+            $resultset->bindValue(':panier',$id_panier,PDO::PARAM_INT);
+            $resultset->execute();
+            while($data = $resultset->fetch()){
+                $_infoArray[] = new panier($data);
+            }
+            if(empty($data))
+            {
+                $_infoArray[]=false;
+            }
+            return $_infoArray;
+        }catch(PDOException $e){
+            print "Erreur ".$e->getMessage();
+        }  
     }
 }

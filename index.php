@@ -10,10 +10,13 @@ session_start();
         <title>Mon site !</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="jquery-3.2.1.js"></script> 
+        <script src="admin/lib/js/functions.js"></script>
+        <script src="admin/lib/js/functionsAjax.js"></script>
+        <script type="text/javascript" src="admin/lib/js/dist/jquery.validate.js"></script> 
         <link rel="stylesheet" type="text/css" href="lib/CSS/style1.css"/>
-        <script src="jquery.js"></script>
         <meta charset="utf-8">
     </head>
     <header class="container">
@@ -47,9 +50,22 @@ session_start();
         <?php
         if (!isset($_SESSION['page'])) {
             $_SESSION['page'] = "./pages/accueil.php";
-        } else {
+        } 
+        else {
             if (isset($_GET['page'])) {
-                $_SESSION['page'] = "./pages/" . $_GET['page'];
+                if(!isset($_SESSION['login']))
+                { 
+                    $_SESSION['page'] = "./pages/" . $_GET['page'];
+                }
+                else if ($_SESSION['login']!='admin')
+                {
+                    $_SESSION['page'] = "./pages/" . $_GET['page'];
+                }
+                else
+                {
+                    $_SESSION['page'] = "./admin/pages/" . $_GET['page'];
+                }
+                
             }
         }
         if (file_exists($_SESSION['page'])) {
@@ -60,7 +76,7 @@ session_start();
         ?>
     </body>
     <footer class="col-sm-12">
-        <p>© 2117 OVNI_TRO, All rights reserved 2116-2117.</p>
+        <p style="font-size :12px;">© 2117 OVNI_TRO, All rights reserved 2116-2117.<br/></p>
     </footer>
 </html>
 <script>

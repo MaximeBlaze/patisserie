@@ -10,16 +10,14 @@ class utilisateurDB extends utilisateur{
     
     public function getUtilisateur($login){
         try {
-            $nbr=0;
             $query="select * from UTILISATEUR where login= :login";
             $resultset = $this->_db->prepare($query);
             $resultset->bindValue(':login',$login,PDO::PARAM_STR);
             $resultset->execute();
             while($data = $resultset->fetch()){
                 $_infoArray[] = new utilisateur($data);
-                $nbr+1;
             }
-            if($nbr==0)
+            if(empty($data))
             {
                 $_infoArray[]=false;
             }
@@ -77,7 +75,65 @@ class utilisateurDB extends utilisateur{
             $resultset->bindValue(':mdp',md5($data[2]),PDO::PARAM_STR);
             $resultset->bindValue(':cpt',$data[3],PDO::PARAM_INT);
             $resultset->bindValue(':adr',$data[4],PDO::PARAM_STR);
-            $resultset->bindValue(':login','admin',PDO::PARAM_STR);
+            $resultset->bindValue(':login',$_SESSION['login'],PDO::PARAM_STR);
+            $resultset->execute();
+        }catch(PDOException $e){
+            print "Erreur ".$e->getMessage();
+        }        
+    }
+    
+    public function getAllUSser()
+    {
+        try{
+            $query="select * from UTILISATEUR;";
+            $resultset = $this->_db->prepare($query);
+            $resultset->execute();
+            while($data = $resultset->fetch()){
+                $_infoArray[] = new utilisateur($data);
+            }
+            return $_infoArray;
+        } catch (Exception $ex) {
+
+        }
+    }
+    
+    public function AjaxUpdateUser($champ,$nouveau,$id){                
+        try {
+            $query="UPDATE UTILISATEUR set ".$champ." = '".$nouveau."' where ID_UTILISATEUR ='".$id."'";            
+            $resultset = $this->_db->prepare($query);
+            $resultset->execute();            
+            
+        }catch(PDOException $e){
+            print $e->getMessage();
+        }
+    }
+    
+    public function suppUser($id)
+    {
+        try
+        {
+            $query="DELETE from UTILISATEUR where ID_UTILISATEUR = :id";
+            $resultset = $this->_db->prepare($query);
+            $resultset->bindValue(':id',$id,PDO::PARAM_INT);
+            $resultset->execute();
+        } 
+        catch (Exception $ex) 
+        {
+            print $ex->getMessage();
+        }
+    }
+    
+    public function UpdateUser2($data){
+        try {
+            $query="update UTILISATEUR set NOM =:nom, PRENOM =:prenom, MDP =:mdp, NUMERO_COMPTE =:cpt, ADRESSE =:adr, LOGIN =:login where ID_UTILISATEUR = :id;";
+            $resultset = $this->_db->prepare($query);
+            $resultset->bindValue(':nom',$data[0],PDO::PARAM_STR);
+            $resultset->bindValue(':prenom',$data[1],PDO::PARAM_STR);
+            $resultset->bindValue(':mdp',md5($data[2]),PDO::PARAM_STR);
+            $resultset->bindValue(':cpt',$data[3],PDO::PARAM_STR);
+            $resultset->bindValue(':adr',$data[4],PDO::PARAM_STR);
+            $resultset->bindValue(':login',$data[5],PDO::PARAM_STR);
+            $resultset->bindValue(':id',$data[6],PDO::PARAM_STR);
             $resultset->execute();
         }catch(PDOException $e){
             print "Erreur ".$e->getMessage();

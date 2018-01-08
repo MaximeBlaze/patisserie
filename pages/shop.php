@@ -7,7 +7,7 @@
             $info2 = new liste_panierDB($cnx);
             $texte2 = $info2->ajoutpanier($_GET['choix']);?>
             <meta http-equiv = "refresh": content = "0;url=index.php?page=panier.php">
-    <?php } 
+    <?php }
     
 ?>
 <section class="col-sm-12 bloc1">
@@ -28,9 +28,34 @@
                     <label name="prix">Prix : <?php print $texte[$i]->PRIX; ?> unité(s)</label><br/><br/>
                     <?php
                     if(isset($_SESSION['login']))
-                    { ?>
-                    <input class="btn btn-primary" type="submit" name="commander" value="Ajouter au panier"/>
-                    <?php } ?>     
+                    { 
+                        $info3 = new panierDB($cnx);
+                        $texte3 = $info3->getPanier();
+                        $nbr = count($texte3)-1;
+                        if($nbr==0)
+                        { ?>
+                            <input class="btn btn-primary" type="submit" name="commander" value="Ajouter au panier"/>
+                        <?php }
+                        else
+                        {
+                            $ok=0;
+                            for($j=0;$j<$nbr;$j++)
+                            {
+                                if($texte3[$j]->ID_VAISSEAU==$texte[$i]->ID_VAISSEAU)
+                                {
+                                    $ok=1;
+                                }
+                            }
+                            if($ok==0)
+                            { ?>
+                                <input class="btn btn-primary" type="submit" name="commander" value="Ajouter au panier"/>
+                            <?php }
+                            else
+                            {
+                                print "Déjà dans votre panier !";
+                            }
+                        }
+                    } ?>     
                 </form>
             </section>
         <?php } ?>

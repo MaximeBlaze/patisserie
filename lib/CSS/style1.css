@@ -151,6 +151,17 @@
     width :50%;
     height : 50%;
 }
+
+#tabvaiss{
+    background-image: url('../../lib/CSS/Images/etoiles.png');
+}
+
+.vaisstab{
+    width : 90%;
+    height : 70%;
+    text-align : center;
+}
+
 /************************************** Styles balises *********************************/
 body, html{
     background-image: url('images/etoiles.png');
@@ -161,9 +172,6 @@ table{
     text-align : center;
 }
 
-table tr td{
-    width :70%;
-}
 header{
     background-image: url('images/etoiles.png');
 }
@@ -226,4 +234,13 @@ footer p{
     padding: 10.5px;
     margin: 0px;
     line-height: 100%;
+}
+
+th{
+    text-align : center;
+    width : 40%;
+}
+
+td{
+    width : 40%;
 }
